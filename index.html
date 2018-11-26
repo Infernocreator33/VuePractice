@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    </head>
+    <body>
+        <div id="app">
+            {{message}}
+            <input type="text" v-model="message">
+            <ul>
+                <li v-for = "task in todos">{{task}}</li>
+                <!-- can push to the array by using app.todos.push("newValue");-->
+            </ul>
+            <button v-on:click="changeMessage">ChangeMessage</button> <!--also v-on:click === @click-->
+            <button @click="increment">Increment</button>
+            <button @click="decrement" v-if = "clicked >= 1">Decrement</button>
+            <p><img v-bind:src = "imgSrc">Clicked: {{clicked}}</p>
+            <p>Clicked10: {{clicked10}}</p>
+        </div>
+        <script>
+            var app = new Vue({
+                el: "#app", 
+                data: {
+                    clicked: 0,
+                    clicked10: 0,
+                    imgSrc: "eyeballcheck.jpg",
+                    message: "Hello Vue!", 
+                    todos: ["learn HTML", "Learn JS", "Learn Vue"]
+                }, 
+                methods:{
+                    changeMessage(){
+                        this.message = "I got vued from this button";
+                    }, 
+                    increment(){
+                        this.clicked++;
+                        this.clicked10+=10;
+                    },
+                    decrement(){
+                        this.clicked--;
+                        this.clicked10-=10;
+                    }
+                }
+            });
+            
+        </script>
+    </body>
+    </html>
